@@ -1,3 +1,11 @@
+## TODO
+- [] fix absolute path for fonts in css for grunt build
+- [] add choice between bootstrap and angular material
+- [] wait for plugins before loading angular
+- [] (maybe) add support for favorite bower packages (like font-awesome, momentjs, ...)
+
+
+
 # AngularJS Cordova generator
 [![Build Status](https://travis-ci.org/keshavos/generator-angularjs-cordova.svg)](https://travis-ci.org/keshavos/generator-angularjs-cordova)
 
