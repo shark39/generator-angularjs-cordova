@@ -1,8 +1,9 @@
 ## TODO
-- [] fix absolute path for fonts in css for grunt build
+- [x] fix absolute path for fonts in css for grunt build
 - [] add choice between bootstrap and angular material
 - [] wait for plugins before loading angular
-- [] (maybe) add support for favorite bower packages (like font-awesome, momentjs, ...)
+- [] add support for favorite bower packages (like font-awesome, momentjs, ...)
+- [] lint files
 
 
 
