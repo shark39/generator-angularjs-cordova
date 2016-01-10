@@ -1,10 +1,13 @@
 'use strict';
 
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
+
+    grunt.loadNpmTasks("grunt-css-url-rewrite");
+    grunt.option('force', true);
 
     grunt.initConfig({
 
@@ -359,10 +362,17 @@ module.exports = function(grunt) {
                         'fonts/*'
                     ]
                 }, {
-                    expand: true,
-                    cwd: '.tmp/images',
-                    dest: '<%= yeoman.dist %>/img',
-                    src: ['generated/*']
+                        expand: true,
+                        cwd: '.tmp/images',
+                        dest: '<%= yeoman.dist %>/img',
+                        src: ['generated/*']
+                },
+                    {
+                        expand: true,
+                        flatten: true,
+                        filter: 'isFile',
+                        src: ['<%= yeoman.app %>/lib/*/fonts/*'],
+                        dest: '<%= yeoman.dist %>/styles/fonts'
                 }]
             },
             styles: {
@@ -386,6 +396,27 @@ module.exports = function(grunt) {
                 'imagemin',
                 'svgmin'
             ]
+        },
+         //rewriting font url
+        cssUrlRewrite: {
+           
+            dist: {
+                src: '<%= yeoman.dist %>/styles/vendor.css',
+                dest: '<%= yeoman.dist %>/styles/vendor.css',
+                options: {
+                    skipExternal: true,
+                    rewriteUrl: function (url, options, dataURI) {
+                       var i,
+                           fontEndings = '.[otf|eot|svg|ttf|woff|woff2]',
+                           filename = url.split('\\').pop(),
+                           filenameReg = new RegExp(fontEndings); 
+                            if (filenameReg.test(fontEndings)) {
+                                return 'fonts/' + filename;
+                            }
+                        return url;
+                    }
+                }
+            }
         },
 
         // Test settings
@@ -449,7 +480,8 @@ module.exports = function(grunt) {
         'rev',
         'usemin',
         'htmlmin',
-        'comments:dist'
+        'comments:dist',
+        'cssUrlRewrite'
     ]);
 
     grunt.registerTask('default', [
