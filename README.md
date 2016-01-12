@@ -1,9 +1,10 @@
 ## TODO
 - [x] fix absolute path for fonts in css for grunt build
-- [] add choice between bootstrap and angular material
-- [] wait for plugins before loading angular
-- [] add support for favorite bower packages (like font-awesome, momentjs, ...)
-- [] lint files
+- [ ] add choice between bootstrap and angular material
+- [ ] wait for plugins before loading angular
+- [ ] add support for favorite bower packages (like font-awesome, momentjs, ...)
+- [ ] lint files
+- [ ] bug in route sub generator: wrong controller name when route name is different to controller name 
 
 
 
